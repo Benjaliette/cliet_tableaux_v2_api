@@ -69,6 +69,17 @@ public class PaintingControllerTest {
     }
 
     @Test
+    void testGetPainting() throws Exception {
+        when(paintingService.find(ArgumentMatchers.any())).thenReturn(painting1);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/paintings/{id}", 1))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", Matchers.equalTo(1)))
+                .andExpect(jsonPath("$.title", Matchers.equalTo("Painting " +
+                        "test")));
+    }
+
+    @Test
     void testCreateHome() throws Exception {
         when(paintingService.create(ArgumentMatchers.any())).thenReturn(painting1);
 

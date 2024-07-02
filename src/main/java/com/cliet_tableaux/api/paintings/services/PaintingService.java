@@ -26,4 +26,11 @@ public class PaintingService {
                 paintingRepository.save(paintingMapper.paintingDtoToEntity(newPainting));
         return paintingMapper.paintingEntityToDto(savedPainting);
     }
+
+    public PaintingDto find(Long paintingId) {
+        PaintingEntity retrievedPainting =
+                paintingRepository.findById(paintingId).orElseThrow();
+
+        return paintingMapper.paintingEntityToDto(retrievedPainting);
+    }
 }

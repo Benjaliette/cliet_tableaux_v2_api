@@ -20,6 +20,11 @@ public class PaintingController {
         return new ResponseEntity<>(paintingService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PaintingDto> getPainting(@PathVariable Long id) {
+        return new ResponseEntity<>(paintingService.find(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<PaintingDto> createPaintings(@RequestBody PaintingDto paintingDto) {
         return new ResponseEntity<>(paintingService.create(paintingDto),

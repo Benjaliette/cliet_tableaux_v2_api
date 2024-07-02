@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class PaintingEntity {
     @Id
     @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(name = "title")

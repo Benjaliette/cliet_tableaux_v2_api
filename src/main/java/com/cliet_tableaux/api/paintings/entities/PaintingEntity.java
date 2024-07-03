@@ -1,11 +1,13 @@
 package com.cliet_tableaux.api.paintings.entities;
 
+import com.cliet_tableaux.api.users.entities.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -42,4 +44,8 @@ public class PaintingEntity {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @ManyToMany(mappedBy = "paintings")
+    List<UserEntity> users;
+
 }

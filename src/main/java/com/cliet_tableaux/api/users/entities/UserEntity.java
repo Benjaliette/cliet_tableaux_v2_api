@@ -1,5 +1,6 @@
 package com.cliet_tableaux.api.users.entities;
 
+import com.cliet_tableaux.api.paintings.entities.PaintingEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -48,6 +50,13 @@ public class UserEntity implements UserDetails {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @ManyToMany
+    @JoinTable(
+            name = "orders",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "painting_id"))
+    List<PaintingEntity> paintings;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
